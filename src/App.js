@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Layout from "./components/Layout/Layout";
+
+import { ROUTES } from "./helpers/constants";
+
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Routes>
+          <Route path="/" element={<Layout />}>
+              {
+                  ROUTES.map((route, i) => {
+                      const Element = route.element;
+                      if (route.path === '') {
+                          return <Route key={i} index element={<Element />} />
+                      } else {
+                          return <Route key={i} path={route.path} element={<Element />} />
+                      }
+                  })
+              }
+          </Route>
+      </Routes>
   );
 }
 
