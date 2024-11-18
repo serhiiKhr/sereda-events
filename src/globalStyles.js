@@ -7,4 +7,5 @@ export const PageTitle = styled.h1`
     font-size: 40px;
     color: ${COLORS.MAIN_FONT};
     margin: 0;
+    margin-bottom: 10px;
 `;

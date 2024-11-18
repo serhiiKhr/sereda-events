@@ -2,6 +2,16 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { PageTitle } from '../../globalStyles'
+import { TagsContainer } from "./Calendar.styled";
+
+import Tag from "./components/Tag/Tag";
+
+const TAGS = [
+    { text: 'Meeting with an expert', type: 'alert' },
+    { text: 'Question-answer', type: 'success' },
+    { text: 'Conference', type: 'warning' },
+    { text: 'Webinar', type: 'info' },
+]
 
 function Calendar() {
     const navigate = useNavigate();
@@ -21,12 +31,36 @@ function Calendar() {
         navigate(`?`);
     }
 
+    const onTagClick = (type) => {
+        if (isSelected(type)) {
+            const nextTypes = types.filter(t => t !== type);
+            handleNavigation({
+                ...queryParams,
+                types: nextTypes
+            });
+        } else {
+            handleNavigation({
+                ...queryParams,
+                types: [
+                    ...types,
+                    type
+                ]
+            });
+        }
+    }
+
+    const isSelected = (type) => {
+        return types.includes(type);
+    }
+
     return (
         <section>
             <PageTitle>Calendar</PageTitle>
-            <p>
-                <strong>Selected:</strong> {selected}
-            </p>
+            <TagsContainer>
+                {
+                    TAGS.map((tag, i) => <Tag key={i} text={tag.text} type={tag.type} onClick={onTagClick} selected={isSelected(tag.type)} />)
+                }
+            </TagsContainer>
             <p>
                 <strong>Types:</strong> {types.length > 0 ? types.join(', ') : 'None'}
             </p>
