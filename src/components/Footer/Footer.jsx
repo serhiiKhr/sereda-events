@@ -2,28 +2,39 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-import {ROUTES} from "../../helpers/constants";
+import { ROUTES } from "../../constants/routes";
+
+
+import {SFooter, LogoText,  LogoLink, Nav, Ul, Li, Copyright} from "./Footer.styled";
+
 
 function Footer() {
 
     return (
-        <footer style={{backgroundColor: '#f8f9fa', padding: '10px 20px', marginTop: '20px'}}>
-            <h1>Footer</h1>
+        <SFooter>
 
-            <nav>
-                <ul style={{display: 'flex', listStyle: 'none', gap: '10px', padding: 0}}>
+            <LogoText>
+                <LogoLink to={ROUTES.MAIN.path}>
+                    LOGO
+                </LogoLink>
+            </LogoText>
+
+            <Nav>
+                <Ul>
                     {
-                        ROUTES.map((route, i) => (
-                            <li key={i}>
+                        Object.values(ROUTES).map((route, i) => (
+                            <Li key={i}>
                                 <Link to={route.path}>
                                     {route.name}
                                 </Link>
-                            </li>
+                            </Li>
                         ))
                     }
-                </ul>
-            </nav>
-        </footer>
+                </Ul>
+            </Nav>
+
+            <Copyright>© 2022 All rights reserved</Copyright>
+        </SFooter>
     );
 }
 

@@ -2,30 +2,37 @@ import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
 
-import { ROUTES } from "../../helpers/constants";
+import { ROUTES } from "../../constants/routes";
+
+import { Header as SHeader, LogoLink, LogoText, Nav, Ul, Li } from "./Header.styled"
 
 function Header() {
     const location = useLocation();
 
     return (
-        <header style={{backgroundColor: '#f8f9fa', padding: '10px 20px'}}>
-            <h1>Header</h1>
-            <nav>
-                <ul style={{display: 'flex', listStyle: 'none', gap: '10px', padding: 0}}>
+        <SHeader>
+            <LogoText>
+                <LogoLink to={ROUTES.MAIN.path}>
+                    LOGO
+                </LogoLink>
+            </LogoText>
+            <Nav>
+                <Ul style={{display: 'flex', listStyle: 'none', gap: '10px', padding: 0}}>
                     {
-                        ROUTES.map((route, i) => (
-                            <li key={i}>
-                                <Link to={route.path}
-                                      style={{textDecoration: location.pathname === `/${route.path}` ? 'underline' : 'none'}}>
-                                    {route.name}
-                                </Link>
-                            </li>
-                        ))
+                        Object.values(ROUTES).map((route, i) => {
+                            return  (
+                                <Li key={i}>
+                                    <Link to={route.path}
+                                          className={location.pathname === `/${route.path}` ? 'active' : ''}>
+                                        {route.name}
+                                    </Link>
+                                </Li>
+                            )
+                        })
                     }
-                </ul>
-            </nav>
-            <p>Current Route: {location.pathname}</p>
-        </header>
+                </Ul>
+            </Nav>
+        </SHeader>
     );
 }
 
