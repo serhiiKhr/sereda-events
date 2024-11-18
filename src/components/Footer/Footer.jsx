@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-import {ROUTES} from "../../helpers/constants";
+import { ROUTES } from "../../constants/routes";
 
 function Footer() {
 
@@ -13,7 +13,7 @@ function Footer() {
             <nav>
                 <ul style={{display: 'flex', listStyle: 'none', gap: '10px', padding: 0}}>
                     {
-                        ROUTES.map((route, i) => (
+                        Object.values(ROUTES).map((route, i) => (
                             <li key={i}>
                                 <Link to={route.path}>
                                     {route.name}

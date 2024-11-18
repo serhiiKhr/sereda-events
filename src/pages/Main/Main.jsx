@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { PageTitle } from '../../globalStyles'
+
 function Main() {
 
     return (
         <section>
-            <h2>Main Page</h2>
+            <PageTitle>Main Page</PageTitle>
         </section>
     );
 }

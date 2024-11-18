@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import { PageTitle } from '../../globalStyles'
+
 function Calendar() {
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,7 +23,7 @@ function Calendar() {
 
     return (
         <section>
-            <h2>Calendar Page</h2>
+            <PageTitle>Calendar</PageTitle>
             <p>
                 <strong>Selected:</strong> {selected}
             </p>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from "./components/Layout/Layout";
 
-import { ROUTES } from "./helpers/constants";
+import { ROUTES } from "./constants/routes";
 
 
 import './App.css';
@@ -12,7 +12,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Layout />}>
               {
-                  ROUTES.map((route, i) => {
+                  Object.values(ROUTES).map((route, i) => {
                       const Element = route.element;
                       if (route.path === '') {
                           return <Route key={i} index element={<Element />} />
