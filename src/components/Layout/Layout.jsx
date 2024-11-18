@@ -3,15 +3,19 @@ import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
+import {Wrapper, Container, Main} from './Layout.styled'
+
 function Layout() {
     return (
-        <>
-            <Header />
-            <main style={{ padding: '20px' }}>
-                <Outlet />
-            </main>
-            <Footer />
-        </>
+        <Wrapper>
+            <Container>
+                <Header />
+                <Main>
+                    <Outlet />
+                </Main>
+                <Footer />
+            </Container>
+        </Wrapper>
     );
 }
 
