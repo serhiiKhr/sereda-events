@@ -12,3 +12,26 @@ export const COLORS = {
     ALERT: '#FF4E6B',
     INFO: '#4DB4FF',
 }
+export const getColor = (type) => {
+    let color;
+
+    switch (type) {
+        case 'alert':
+            color = COLORS.ALERT;
+            break;
+        case 'success':
+            color = COLORS.SUCCESS;
+            break;
+        case 'warning':
+            color = COLORS.WARNING;
+            break;
+        case 'info':
+            color = COLORS.INFO;
+            break;
+
+        default:
+            color = COLORS.WARNING;
+    }
+
+    return color;
+}

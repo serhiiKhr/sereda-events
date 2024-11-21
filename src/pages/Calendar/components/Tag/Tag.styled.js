@@ -1,32 +1,10 @@
 import styled from 'styled-components';
 import { rgba } from 'polished';
 
-import { BREAKPOINTS, COLORS } from "../../../../constants/styled";
+import { BREAKPOINTS, COLORS, getColor } from "../../../../constants/styled";
 
 
-const getColor = (type) => {
-    let color;
 
-    switch (type) {
-        case 'alert':
-            color = COLORS.ALERT;
-            break;
-        case 'success':
-            color = COLORS.SUCCESS;
-            break;
-        case 'warning':
-            color = COLORS.WARNING;
-            break;
-        case 'info':
-            color = COLORS.INFO;
-            break;
-
-        default:
-            color = COLORS.WARNING;
-    }
-
-    return color;
-}
 export const STag = styled.div`
     background-color: ${({ type, selected }) => {
         const color = getColor(type);
