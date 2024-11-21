@@ -27,10 +27,7 @@ function Month({ year, month, events, visibleEventTypes, dayClickHandler, ...res
             if (!eventsByDay[dayMonthYearKey]) {
                 eventsByDay[dayMonthYearKey] = [];
             }
-            const types = eventsByDay[dayMonthYearKey].map(e => e.type);
-            if (!types.includes(event.type)) {
-                eventsByDay[dayMonthYearKey].push(event);
-            }
+            eventsByDay[dayMonthYearKey].push(event);
         });
 
         return eventsByDay;
@@ -70,7 +67,7 @@ function Month({ year, month, events, visibleEventTypes, dayClickHandler, ...res
                                     dayCellRefs.current[`${i}_${dayIndex}`] = el
                                 }}
                                 type={isCurrentMonth ? 'active' : 'disabled'}
-                                onClick={() => onDayClick({ date, isCurrentMonth, ref: dayCellRefs.current[`${i}_${dayIndex}`] })}
+                                onClick={() => onDayClick({ date, isCurrentMonth, ref: dayCellRefs.current[`${i}_${dayIndex}`], events: dayEvents })}
                             >
                                 {date.getDate()}
 

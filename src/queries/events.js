@@ -8,4 +8,4 @@ export const getEventsQuery = () => ({
 export const getEventQueryKey = (id) => ({
     queryKey: ['EVENT', id],
     queryFn: () => getEvent(id)
-})
+});

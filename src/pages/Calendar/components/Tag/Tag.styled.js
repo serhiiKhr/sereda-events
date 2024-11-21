@@ -3,8 +3,6 @@ import { rgba } from 'polished';
 
 import { BREAKPOINTS, COLORS, getColor } from "../../../../constants/styled";
 
-
-
 export const STag = styled.div`
     background-color: ${({ type, selected }) => {
         const color = getColor(type);

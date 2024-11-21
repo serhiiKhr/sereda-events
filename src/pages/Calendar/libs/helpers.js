@@ -53,3 +53,13 @@ export const getDaysOfWeek = (firstDayIndex, type) => {
     }
     return [...days.slice(firstDayIndex), ...days.slice(0, firstDayIndex)];
 }
+
+export const getFormattedDate = (date) => {
+    return date.toLocaleString('en-GB', {
+        day: '2-digit',
+        month: 'long',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+}
