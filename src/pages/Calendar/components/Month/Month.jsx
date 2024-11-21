@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback, useMemo, useRef} from 'react';
 
 import {generateCalendar, getDaysOfWeek} from "../../libs/helpers"
 
@@ -10,7 +10,8 @@ import { Container, WeekRow, DayCell, Title, Dots, Dot } from "./Month.styled"
 
 
 
-function Month({ year, month, events, dayClickHandler, ...rest }) {
+function Month({ year, month, events, visibleEventTypes, dayClickHandler, ...rest }) {
+    const dayCellRefs = useRef([]);
     const weeks = useCallback(() => generateCalendar(year, month, WEEK_DAY_START), [year, month])();
     const monthName = useCallback(() => {
         const index = month - 1;
@@ -65,14 +66,24 @@ function Month({ year, month, events, dayClickHandler, ...rest }) {
                         return (
                             <DayCell
                                 key={dayIndex}
+                                ref={(el) => {
+                                    dayCellRefs.current[`${i}_${dayIndex}`] = el
+                                }}
                                 type={isCurrentMonth ? 'active' : 'disabled'}
-                                onClick={() => onDayClick({ date, isCurrentMonth })}
+                                onClick={() => onDayClick({ date, isCurrentMonth, ref: dayCellRefs.current[`${i}_${dayIndex}`] })}
                             >
                                 {date.getDate()}
 
                                 <Dots>
                                     {
                                         dayEvents
+                                            .filter((event, index) => {
+                                                if (!visibleEventTypes || !visibleEventTypes.length || visibleEventTypes.length === 0) {
+                                                    return true;
+                                                }
+
+                                                return visibleEventTypes.includes(event.type);
+                                            })
                                             .map((event, index) => <Dot key={`${dayIndex}_${index}`} type={event.type} />)
                                     }
                                 </Dots>

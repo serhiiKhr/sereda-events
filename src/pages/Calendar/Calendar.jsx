@@ -104,16 +104,12 @@ function Calendar() {
 
     const queryParams = new URLSearchParams(location.search);
     const selected = queryParams.get('selected') || 'none';
-    const types = queryParams.get('types')?.split(',') || [];
+    const types = queryParams.get('types')?.split(',').filter(f => !!`${f}`) || [];
 
     const handleNavigation = (params) => {
         const nextParams = new URLSearchParams(params).toString();
         navigate(`?${nextParams}`);
     };
-
-    const reset = () => {
-        navigate(`?`);
-    }
 
     const onTagClick = (type) => {
         if (isSelected(type)) {
@@ -151,7 +147,7 @@ function Calendar() {
             </TagsContainer>
 
 
-            <CalendarItem events={events} number={6} dayClickHandler={dayClickHandler} />
+            <CalendarItem events={events} number={6} visibleEventTypes={types} dayClickHandler={dayClickHandler} />
         </section>
     );
 }

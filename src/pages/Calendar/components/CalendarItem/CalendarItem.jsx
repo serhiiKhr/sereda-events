@@ -6,7 +6,7 @@ import {get} from "../../../../libs/helpers";
 import {Row, SMonth} from "./CalendarItem.styled";
 
 
-function CalendarItem({ number, dayClickHandler, events }) {
+function CalendarItem({ number, dayClickHandler, events, visibleEventTypes }) {
     const months = useCallback(() => {
             const currentDate = new Date();
             return generateYearMonthArray(currentDate.getFullYear(), currentDate.getMonth() + 1, number);
@@ -34,7 +34,7 @@ function CalendarItem({ number, dayClickHandler, events }) {
                 months.map(({ year, month }, i) => {
                     const monthEvents = get(groupedEvents, `${month + 1}_${year}`, []);
                     return (
-                        <SMonth key={`${i}`} month={month} year={year} dayClickHandler={dayClickHandler} events={monthEvents} />
+                        <SMonth key={`${i}`} month={month} year={year} visibleEventTypes={visibleEventTypes} dayClickHandler={dayClickHandler} events={monthEvents} />
                     )
                 })
             }
