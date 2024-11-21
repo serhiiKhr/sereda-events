@@ -9,7 +9,7 @@ export const Header = styled.header`
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    min-height: 70px;
+    height: 70px;
     margin-bottom: 32px;
     align-items: center;
     border-bottom: 1px solid ${rgba(COLORS.ALERT, 0.16)};
@@ -20,7 +20,7 @@ export const Header = styled.header`
     }
 
     @media (max-width: ${BREAKPOINTS.mobile}px) {
-        
+        height: auto;
     }
 `;
 export const LogoLink = styled(Link)`
